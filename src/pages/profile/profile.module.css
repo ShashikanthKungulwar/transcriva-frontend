@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: rgb(60, 36, 36);
+    background: rgba(255, 255, 255, 0.3);
+    min-width: 300px;
+    min-height: 300px;
+    padding: 50px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 1px 2px 3px 4px rgba(255, 255, 255, 0.3);
+    align-items: center;
+    gap:10px;
+    background-image: url('../../assets/images/shapeDivider.jpeg');
+    /* object-fit: contain
+     */
+     background-repeat: no-repeat;
+     background-position: center;
+     background-attachment: fixed;
+     background-size: cover;
+}
+
+.container span{
+  
+    font-weight: 600;
+    font-size: x-large;
+}
+.container span:last-child{
+    align-self: center;
+    
+}
+.container span:last-child a button{
+   font-size: large;
+}

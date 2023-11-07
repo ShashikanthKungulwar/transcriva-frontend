@@ -5,12 +5,15 @@ import { Link } from "react-router-dom";
 export default function Header(props) {
     return (
         <header className={styles.header}>
-            <span>Transcriva
-            </span>
+            <Link><span>Transcriva
+            </span></Link>
             <span>
-                <Link to="/sign-in"><Button variant="outlined" >Sign In</Button></Link>
-                <Link to="/sign-up"><Button variant="outlined" >Sign Up</Button></Link>
-                <Link to="/"><Button variant="outlined">Sign Out</Button></Link>
+                {props.login ?
+                    <><Link to="/profile"><Button variant="outlined">profile</Button></Link>
+                        <Link to="/"><Button variant="outlined">Sign Out</Button></Link>
+                    </>
+                    : <><Link to="/sign-in"><Button variant="outlined" >Sign In</Button></Link>
+                        <Link to="/sign-up"><Button variant="outlined" >Sign Up</Button></Link></>}
             </span>
         </header>
     )

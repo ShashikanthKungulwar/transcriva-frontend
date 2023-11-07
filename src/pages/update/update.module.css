@@ -1,0 +1,23 @@
+.form {
+    height: 450px;
+    width: 300px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    border-radius: 10px;
+    background: url("../../assets/images/formBackground.jpeg");
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(50%);
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0.5px 1px 10px 0.5px #b5c0d2;
+}
+
+.form button {
+    background-color: blueviolet;
+}
+
+.form button:hover {
+    background-color: blueviolet;
+}
