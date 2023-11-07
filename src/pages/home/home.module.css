@@ -1,0 +1,50 @@
+.textarea {
+    background-color: transparent !important;
+}
+
+.container {
+    width: 500px;
+    height: auto;
+    color: white;
+}
+
+.container form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.container form button {
+    width: 50%;
+}
+
+
+.file {
+    position: relative;
+    display: inline-block;
+    background-color: rgb(127, 46, 129);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.file input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.file:hover {
+    background-color: transparent;
+    color: rgb(127, 46, 129);
+    border: solid 1px rgb(127, 46, 129);
+    font-weight: 600;
+}
