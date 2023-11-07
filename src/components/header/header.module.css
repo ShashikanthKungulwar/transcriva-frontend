@@ -8,14 +8,19 @@
     border-bottom: solid 1px rgba(85, 84, 84, 0.5);
 }
 
-.header span:last-child
-{
+.header span:last-child {
     display: flex;
     gap: 5px;
 
 }
 
-.header span:first-child{
+.header span:last-child button {
+    border: solid 1px rgb(127, 46, 129);
+    color: rgb(127, 46, 129);
+}
+
+.header span:first-child {
     font-size: x-large;
-    font-weight: 600;color: rgb(255, 255, 255);
-}   
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+}

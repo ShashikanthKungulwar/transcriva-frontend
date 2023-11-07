@@ -6,11 +6,10 @@ export default function Header(props) {
     return (
         <header className={styles.header}>
             <span>Transcriva
-               
             </span>
             <span>
                 <Link to="/sign-in"><Button variant="outlined" >Sign In</Button></Link>
-                <Link to="/sign-up"><Button variant="outlined" href="/sign-up">Sign Up</Button></Link>
+                <Link to="/sign-up"><Button variant="outlined" >Sign Up</Button></Link>
                 <Link to="/"><Button variant="outlined">Sign Out</Button></Link>
             </span>
         </header>
