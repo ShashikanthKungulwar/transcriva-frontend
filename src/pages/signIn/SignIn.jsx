@@ -1,9 +1,12 @@
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Button, TextField } from '@mui/material'
 import styles from './signIn.module.css'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { errorToast, successToast } from '../../ToastCusomization/toastCalls';
 
-export default function SignIn() {
+export default function SignIn({ login,setLogin }) {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: "",
         password: ""
@@ -16,7 +19,11 @@ export default function SignIn() {
         });
 
     }
-
+    useEffect(() => {
+        if (login) {
+            navigate('/');
+        }
+    }, [])
 
     async function handleSubmit(event) {
         event.preventDefault();
@@ -29,10 +36,16 @@ export default function SignIn() {
             body: JSON.stringify(formData) // Data to be sent as the request body (should be a JSON string)
 
         });
-
-
-
-        console.log(await response.json());
+        const data =await response.json();
+        if (response.ok) {
+            setLogin('true');
+            successToast(data.message);
+            navigate('/profile');
+        }   
+        else {
+            errorToast(data.message);
+        }
+        // console.log(await response.json());
     }
 
 
@@ -43,8 +56,8 @@ export default function SignIn() {
                 <form className={styles.form} onSubmit={handleSubmit} >
                     <h1>Sign In </h1>
 
-                    <TextField  label="Email" variant="outlined" name='email' type='email' required value={formData.email} onChange={handleChange} />
-                    <TextField  label="Password" variant="outlined" name='password' type='password' required value={formData.password} onChange={handleChange} />
+                    <TextField label="Email" variant="outlined" name='email' type='email' required value={formData.email} onChange={handleChange} />
+                    <TextField label="Password" variant="outlined" name='password' type='password' required value={formData.password} onChange={handleChange} />
                     <Button variant='contained' type='submit' >sign in</Button>
                 </form>
             </main>

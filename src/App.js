@@ -9,19 +9,24 @@ import SignIn from "./pages/signIn/SignIn";
 import SignUp from "./pages/signUp/SignUp";
 import Profile from './pages/profile/Profile';
 import Update from './pages/update/Update';
+import 'react-toastify/dist/ReactToastify.css';
+import CustomToastContainer from './ToastCusomization/CustomToastContainer';
+
+
 
 function App() {
   const [login, setLogin] = useState(false);
-  const router = getRouter(login);
+  const router = getRouter(login, setLogin);
   return (
     <div className="App">
+      <CustomToastContainer />
       <RouterProvider router={router} />
     </div>
   );
 }
 
 
-function getRouter(login) {
+function getRouter(login, setLogin) {
   const router = createBrowserRouter([
     {
       path: "/",
@@ -33,19 +38,19 @@ function getRouter(login) {
         },
         {
           path: "/sign-in",
-          element: <SignIn />
+          element: <SignIn login={login} setLogin={setLogin} />
         },
         {
           path: "/sign-up",
-          element: <SignUp />
+          element: <SignUp login={login} setLogin={setLogin} />
         },
         {
           path: "/profile",
-          element: <Profile />
+          element: <Profile login={login} setLogin={setLogin} />
         },
         {
-          path:"/update",
-          element:<Update />
+          path: "/update",
+          element: <Update login={login} setLogin={setLogin} />
         }
       ]
     }

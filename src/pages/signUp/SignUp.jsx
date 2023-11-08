@@ -1,16 +1,21 @@
 import { Button, TextField } from '@mui/material'
 import styles from './signUp.module.css';
-import { useState } from 'react';
-import axios from 'axios';
-export default function SignUp() {
-
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { errorToast, successToast } from '../../ToastCusomization/toastCalls';
+export default function SignUp({ login }) {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         password: '',
         confirm: ''
     });
-
+    useEffect(() => {
+        if (login) {
+            navigate('/');
+        }
+    }, [])
 
     function handleChange(event) {
         const { name, value } = event.target;
@@ -33,13 +38,27 @@ export default function SignUp() {
                 // You can include other headers as needed
             },
             body: JSON.stringify(formData) // Data to be sent as the request body (should be a JSON string)
-        }).then(response => console.log(response)).catch(error => console.error(error));
+        }).then(async response => {
+            if (response.ok) {
+                
+                const data =await response.json();
+                successToast(data.message);
+                navigate('/sign-in');
+            }
+            else{
+                const data= await response.json();
+                errorToast(data.message);
+
+            }
+        }).catch(error => console.error(error));
+
         setFormData({
-            name:"",
-            email:"",
-            password:"",
-            confirm:""
-        })
+            name: "",
+            email: "",
+            password: "",
+            confirm: ""
+        });
+
     }
     return (
         <>
