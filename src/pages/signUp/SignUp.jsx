@@ -26,7 +26,7 @@ export default function SignUp() {
             console.log('check password');
             return;
         }
-        fetch('http://192.168.56.1:8000/api/v1/create-user', {
+        fetch('http://192.168.56.1:8000/api/v1/users/create-user', {
             method: 'POST', // HTTP method (other methods like PUT, DELETE, etc. can be used)
             headers: {
                 'Content-Type': 'application/json', // Specify the content type of the request body
