@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 
 
 
-export default function Profile({ login }) {
+export default function Profile({ login,user }) {
     const navigate = useNavigate();
 
 
@@ -19,8 +19,8 @@ export default function Profile({ login }) {
         <main>
             <div className={styles.container}>
                 <h1>Profile</h1>
-                <span>{" Ram"}</span>
-                <span>{"Ram@gmail.com"}</span>
+                <span>{user.name}</span>
+                <span>{user.email}</span>
                 <span>
                     <Link to={'/update'}><Button variant="contained" >update</Button></Link>
                     <Link to={'/'}><Button variant="contained" >sign out</Button></Link>

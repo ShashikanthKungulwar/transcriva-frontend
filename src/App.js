@@ -16,7 +16,9 @@ import CustomToastContainer from './ToastCusomization/CustomToastContainer';
 
 function App() {
   const [login, setLogin] = useState(false);
-  const router = getRouter(login, setLogin);
+  const [user,setUser]=useState(null);
+  const [auth,setAuth]=useState(null);
+  const router = getRouter(login, setLogin,user,setUser,auth,setAuth);
   return (
     <div className="App">
       <CustomToastContainer />
@@ -26,7 +28,7 @@ function App() {
 }
 
 
-function getRouter(login, setLogin) {
+function getRouter(login, setLogin,user,setUser,auth,setAuth) {
   const router = createBrowserRouter([
     {
       path: "/",
@@ -38,7 +40,7 @@ function getRouter(login, setLogin) {
         },
         {
           path: "/sign-in",
-          element: <SignIn login={login} setLogin={setLogin} />
+          element: <SignIn login={login} setLogin={setLogin} setUser={setUser} setAuth={setAuth} />
         },
         {
           path: "/sign-up",
@@ -46,11 +48,11 @@ function getRouter(login, setLogin) {
         },
         {
           path: "/profile",
-          element: <Profile login={login} setLogin={setLogin} />
+          element: <Profile login={login} user={user} setLogin={setLogin} />
         },
         {
           path: "/update",
-          element: <Update login={login} setLogin={setLogin} />
+          element: <Update login={login} setLogin={setLogin}  setUser={setUser} setAuth={setAuth} auth={auth}/>
         }
       ]
     }

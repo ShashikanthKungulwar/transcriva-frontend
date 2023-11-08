@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { errorToast, successToast } from '../../ToastCusomization/toastCalls';
 
-export default function SignIn({ login,setLogin }) {
+export default function SignIn({ login,setLogin,setAuth,setUser }) {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: "",
@@ -39,6 +39,8 @@ export default function SignIn({ login,setLogin }) {
         const data =await response.json();
         if (response.ok) {
             setLogin('true');
+            setUser(data.data.user)
+            setAuth(data.data.token)
             successToast(data.message);
             navigate('/profile');
         }   
