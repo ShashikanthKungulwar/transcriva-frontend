@@ -38,6 +38,7 @@ export default function Update({ login,setLogin,setUser,setAuth,auth }) {
             body: JSON.stringify(formData) // Data to be sent as the request body (should be a JSON string)
 
         });
+        
         const data =await response.json();
         if (response.ok) {
             setLogin('true');

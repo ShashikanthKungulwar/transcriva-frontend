@@ -1,6 +1,6 @@
 // import logo from './logo.svg';
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Header from './components/header/Header';
 import StickyFooter from './components/footer/Footer';
@@ -11,6 +11,7 @@ import Profile from './pages/profile/Profile';
 import Update from './pages/update/Update';
 import 'react-toastify/dist/ReactToastify.css';
 import CustomToastContainer from './ToastCusomization/CustomToastContainer';
+import { successToast } from './ToastCusomization/toastCalls';
 
 
 
@@ -18,7 +19,27 @@ function App() {
   const [login, setLogin] = useState(false);
   const [user,setUser]=useState(null);
   const [auth,setAuth]=useState(null);
-  const router = getRouter(login, setLogin,user,setUser,auth,setAuth);
+  function logOut()
+    {
+        setLogin(false);
+        setAuth(null);
+        setUser(null);
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        successToast('successfully loged out');
+        
+    }
+    useEffect(()=>{
+      if(localStorage.getItem('token'))
+      {
+        setLogin(true);
+        setAuth(localStorage.getItem('token'));
+        setUser(JSON.parse(localStorage.getItem('user')));
+      }
+    },[]);
+
+  const router = getRouter(login, setLogin,user,setUser,auth,setAuth,logOut);
+
   return (
     <div className="App">
       <CustomToastContainer />
@@ -28,11 +49,11 @@ function App() {
 }
 
 
-function getRouter(login, setLogin,user,setUser,auth,setAuth) {
+function getRouter(login, setLogin,user,setUser,auth,setAuth,logOut) {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <><Header login={login} /><Outlet /><StickyFooter /></>,
+      element: <><Header login={login} logOut={logOut} /><Outlet /><StickyFooter /></>,
       children: [
         {
           index: true,
@@ -48,7 +69,7 @@ function getRouter(login, setLogin,user,setUser,auth,setAuth) {
         },
         {
           path: "/profile",
-          element: <Profile login={login} user={user} setLogin={setLogin} />
+          element: <Profile login={login} user={user} logOut={logOut} />
         },
         {
           path: "/update",

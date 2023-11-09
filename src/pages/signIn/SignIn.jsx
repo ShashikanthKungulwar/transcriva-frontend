@@ -4,6 +4,7 @@ import styles from './signIn.module.css'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { errorToast, successToast } from '../../ToastCusomization/toastCalls';
+import Cookies from 'js-cookie';
 
 export default function SignIn({ login,setLogin,setAuth,setUser }) {
     const navigate = useNavigate();
@@ -21,19 +22,18 @@ export default function SignIn({ login,setLogin,setAuth,setUser }) {
     }
     useEffect(() => {
         if (login) {
-            navigate('/');
+            navigate('/profile');
         }
     }, [])
 
     async function handleSubmit(event) {
         event.preventDefault();
         const response = await fetch('http://192.168.56.1:8000/api/v1/users/create-session', {
-            method: 'POST', // HTTP method (other methods like PUT, DELETE, etc. can be used)
+            method: 'POST',
             headers: {
-                'Content-Type': 'application/json', // Specify the content type of the request body
-                // You can include other headers as needed
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(formData) // Data to be sent as the request body (should be a JSON string)
+            body: JSON.stringify(formData) 
 
         });
         const data =await response.json();
@@ -42,6 +42,10 @@ export default function SignIn({ login,setLogin,setAuth,setUser }) {
             setUser(data.data.user)
             setAuth(data.data.token)
             successToast(data.message);
+            localStorage.setItem('token',data.data.token);
+            localStorage.setItem('user',JSON.stringify(data.data.user));
+            // localStorage.setItem('refresh',)
+            console.log(Cookies.get('jwt'));
             navigate('/profile');
         }   
         else {
