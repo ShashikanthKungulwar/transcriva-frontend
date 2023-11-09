@@ -11,6 +11,9 @@ export default function Header(props) {
             <Link><span>Transcriva
             </span></Link>
             <span>
+                <Link to="/about">About</Link>
+            </span>
+            <span>
                 {props.login ?
                     <><Link to="/profile"><Button variant="outlined">profile</Button></Link>
                       <Link>  <Button variant="outlined" onClick={props.logOut}>Sign Out</Button></Link>

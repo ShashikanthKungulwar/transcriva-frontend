@@ -1,0 +1,42 @@
+
+
+.main{
+    color: white;
+    padding-inline-start: 30px;
+}
+
+.content {
+    width: 1200px;
+    height: auto;
+    margin: auto;
+    color: #fff;
+    position: relative;
+}
+
+.content .par {
+    text-align: justify;
+    padding-left: 20px;
+    text-align: justify;
+    padding-bottom: 25px;
+    font-family: Arial;
+    letter-spacing: 1.2px;
+    line-height: 30px;
+    width: 70%;
+}
+
+.content h1 {
+    font-family: 'Times New Roman';
+    font-size: 50px;
+    padding-left: 20px;
+    margin-top: 9%;
+    letter-spacing: 2px;
+}   
+
+.content span {
+    color: #ff7200;
+}
+.main img{
+    position: relative;
+    transform: translate(-40%,100%);
+
+}

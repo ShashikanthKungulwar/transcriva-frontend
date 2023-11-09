@@ -12,6 +12,7 @@ import Update from './pages/update/Update';
 import 'react-toastify/dist/ReactToastify.css';
 import CustomToastContainer from './ToastCusomization/CustomToastContainer';
 import { successToast } from './ToastCusomization/toastCalls';
+import About from './pages/about/About';
 
 
 
@@ -74,6 +75,10 @@ function getRouter(login, setLogin,user,setUser,auth,setAuth,logOut) {
         {
           path: "/update",
           element: <Update login={login} setLogin={setLogin}  setUser={setUser} setAuth={setAuth} auth={auth}/>
+        },
+        {
+          path:"/about",
+          element:<About />
         }
       ]
     }
