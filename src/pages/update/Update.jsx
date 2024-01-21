@@ -41,6 +41,7 @@ export default function Update({ login,setLogin,setUser,setAuth,auth }) {
         
         const data =await response.json();
         if (response.ok) {
+            console.log(data.data)
             setLogin('true');
             setUser(data.data.user)
             setAuth(data.data.token)
