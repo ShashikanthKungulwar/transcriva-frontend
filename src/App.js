@@ -58,7 +58,7 @@ function getRouter(login, setLogin,user,setUser,auth,setAuth,logOut) {
       children: [
         {
           index: true,
-          element: <Home />
+          element: <Home login={login}/>
         },
         {
           path: "/sign-in",

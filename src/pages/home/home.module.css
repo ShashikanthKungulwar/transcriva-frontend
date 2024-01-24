@@ -1,11 +1,25 @@
 .textarea {
     background-color: transparent !important;
+    color: wheat;
+    height: 300px; /* Set a fixed height or adjust as needed */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    resize: none;
+    width:70vw;
+    font-size: larger;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    border-color: #afacac;
+    padding-right: 30px;
+    margin-top: 5px;
 }
 
 .container {
-    width: 500px;
-    height: auto;
+
+    height: 70vh;
     color: white;
+    position: relative;
 }
 
 .container form {
@@ -47,4 +61,28 @@
     color: rgb(127, 46, 129);
     border: solid 1px rgb(127, 46, 129);
     font-weight: 600;
+}
+
+.loading{
+    position:fixed;
+    height: 50%;
+    width:50%;
+    background-color: rgba(0,0,0, 0.8);
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+    z-index: 1000;
+    flex-direction: column;
+    border-radius: 5px;
+}
+
+.loading img{
+    height: 70%;
+    width: 70%;
+    border-radius: 5px;
+
 }
