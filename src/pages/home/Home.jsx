@@ -1,5 +1,6 @@
 import { Button } from "@mui/material";
 import Textarea from '@mui/joy/Textarea';
+import { Link } from "react-router-dom";
 import styles from "./home.module.css"
 import { useRef, useState } from "react";
 import { warningToast } from "../../ToastCusomization/toastCalls";
@@ -7,14 +8,16 @@ import loadGif from '../../assets/images/truck.gif'
 
 export default function Home({ login }) {
     const [result, setResult] = useState("");
-    const ref = useRef();
+    const [filename,setFilename] =useState('') ;
     const [file, setFile] = useState(null);
     const [loading, setLoading] = useState(false);
+    const valueRef = useRef();
     function handleFormData(event) {
         const fileData = event.target.files;
+        console.log(fileData)
         if (fileData) {
             if (fileData[0]) {
-                ref.current.innerText = fileData[0].name;
+                setFilename(fileData[0].name);
             }
         }
         setFile(fileData[0])
@@ -48,28 +51,43 @@ export default function Home({ login }) {
             console.error('Error:', error);
         }
     }
-    function handleChange(event){
+    function handleChange(event) {
         setResult(event.target.value)
+    }
+    function handleClose()
+    {
+        setResult('');
+        setFile(null);
+        valueRef.current.value=null;
+        setFilename('');
     }
     return <>
         <main>
 
             <div className={styles.container}>
-                {loading?<div className={styles.loading}>
+                {loading ? <div className={styles.loading}>
                     <img src={loadGif} alt="Loading..." />
                     <h3>Loading...</h3>
-                </div>:""}
+                </div> : ""}
                 {login ? <>
                     <h1>Upload Your File Here</h1>
                     <form encType="multipart/form-data" onSubmit={handleSubmit}>
                         <label className={styles.file}>
                             <span>Choose File</span>
-                            <input type="file" onChange={handleFormData} required />
+                            <input type="file" onChange={handleFormData} ref={valueRef} required />
                         </label>
-                        <label ref={ref}></label>
+                        <label>{filename}</label>
                         <Button variant="contained" type="submit">Submit</Button>
                     </form>
-                    {result ? <textarea minRows={10} size="lg" className={styles.textarea} value={result.toString()} onChange={handleChange} /> : ""}
+                    {result ?
+                        <div>
+                            <textarea minRows={10} size="lg" className={styles.textarea} value={result.toString()} onChange={handleChange} />
+                            <div>
+                                <Button>save</Button>
+                                <Button style={{'color':'red'}} onClick={handleClose}>close</Button>
+                            </div>
+                        </div> : ""}
+                    <Link to="/my-transcriptions"><Button className={styles.myTranscripts}>My Transcripts</Button></Link>
                 </> : <>
                     <h1>Please login to get our service!</h1>
                 </>

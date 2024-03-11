@@ -22,10 +22,10 @@ export default function Profile({ login,user,logOut }) {
         })
     },[user])
     return (<>{userDetails?<main>
+        <div className={styles.containerHolder}>
         <div className={styles.container}>
             <h1>
-                <img src={profile} height={'30px'} width={'30px'} style={{position:"relative",
-            top:"4.5px"}}/>&nbsp;Profile</h1>
+            <i class="fa-regular fa-user"></i>&nbsp;Profile</h1>
             <span>{userDetails.name}</span>
             <span>{userDetails.email}</span>
             <span>
@@ -33,6 +33,7 @@ export default function Profile({ login,user,logOut }) {
                 <Link to={'/'}><Button variant="contained" onClick={logOut}>sign out</Button></Link>
 
             </span>
+        </div>
         </div>
     </main>:""}</>
         

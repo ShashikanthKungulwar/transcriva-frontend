@@ -4,7 +4,14 @@
   flex-direction: column;
   height: 100vh; 
   background: linear-gradient(23deg, #070748 5%, #000000 30%);
+  background-attachment: fixed;
 }
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 main{
   flex: 1; 
   display: flex;

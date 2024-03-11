@@ -2,25 +2,30 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    color: rgb(60, 36, 36);
-    background: rgba(255, 255, 255, 0.3);
-    min-width: 300px;
-    min-height: 300px;
+    color: rgb(226, 186, 186);
+    min-height: 400px;
+    width: 300px;
     padding: 50px;
     box-sizing: border-box;
-    border-radius: 10px;
-    box-shadow: 1px 2px 3px 4px rgba(255, 255, 255, 0.3);
+    box-shadow: 1px 2px 3px 4px rgba(22, 21, 21, 0.3);
     align-items: center;
     gap:10px;
-    background-image: url('../../assets/images/shapeDivider.jpeg');
+    background: rgba(8, 8, 8, 0.4);
+
+   
      background-repeat: no-repeat;
      background-position: center;
      background-attachment: fixed;
      background-size: contain;
-     /* filter: blur(8px); */
+
+     /* filter: blur(0.8px); */
      /* -webkit-filter: blur(8px);      */
 }
-
+.containerHolder{
+    background-image: url('../../assets/images/profile_background.jpg');
+    border-radius: 10px;
+    
+}
 .container span{
   
     font-weight: 600;
@@ -31,5 +36,10 @@
     
 }
 .container span:last-child a button{
+    color: aliceblue;
    font-size: large;
+}
+
+.container h1{
+    font-size: 40px;
 }

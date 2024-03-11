@@ -13,7 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import CustomToastContainer from './ToastCusomization/CustomToastContainer';
 import { successToast } from './ToastCusomization/toastCalls';
 import About from './pages/about/About';
-
+import MyTranscriptions from "./pages/myTranscriptions/MyTranscriptions" ;
 
 
 function App() {
@@ -79,6 +79,10 @@ function getRouter(login, setLogin,user,setUser,auth,setAuth,logOut) {
         {
           path:"/about",
           element:<About />
+        },
+        {
+          path:"/my-transcriptions",
+          element:<MyTranscriptions login={login}/>
         }
       ]
     }

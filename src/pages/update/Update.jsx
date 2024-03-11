@@ -64,7 +64,7 @@ export default function Update({ login,setLogin,setUser,setAuth,auth }) {
                     <TextField id="outlined-basic" label="Name" variant="outlined" name='name'  required value={formData.name} onChange={handleChange}/>
                     <TextField id="outlined-basic" label="Password" variant="outlined" name='password' type='password' required value={formData.password} onChange={handleChange}/>
                     <TextField id="outlined-basic" label="New Password" type='password' variant="outlined" name='newPassword' required value={formData.newPassword} onChange={handleChange}/>
-                    <Button variant='contained' type='submit'>sign in</Button>
+                    <Button variant='contained' type='submit'>submit</Button>
                 </form>
             </main>
         </>

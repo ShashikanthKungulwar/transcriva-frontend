@@ -1,0 +1,30 @@
+.container {
+
+    height: 70vh;
+    color: white;
+    position: relative;
+    
+}
+.textarea {
+    background-color: transparent !important;
+    color: wheat;
+    /* height: 300px; Set a fixed height or adjust as needed */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+    resize: none;
+    width:70vw;
+    font-size: larger;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    border-color: #afacac;
+    padding-right: 30px;
+    margin-top: 5px;
+}
+
+.transcriptionsList
+{
+    position: relative;
+    max-height: 70vh;
+    overflow: auto;
+}

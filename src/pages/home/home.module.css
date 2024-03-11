@@ -86,3 +86,15 @@
     border-radius: 5px;
 
 }
+
+
+.myTranscripts{
+    position: fixed !important;
+    top:40%;
+    right:10%;
+}
+.myTranscripts:hover{
+    transform: scale(1);
+    color: lightseagreen;
+
+}
