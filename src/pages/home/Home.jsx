@@ -3,10 +3,10 @@ import Textarea from '@mui/joy/Textarea';
 import { Link } from "react-router-dom";
 import styles from "./home.module.css"
 import { useRef, useState } from "react";
-import { warningToast } from "../../ToastCusomization/toastCalls";
+import { successToast, warningToast } from "../../ToastCusomization/toastCalls";
 import loadGif from '../../assets/images/truck.gif'
 
-export default function Home({ login }) {
+export default function Home({ login,auth }) {
     const [result, setResult] = useState("");
     const [filename,setFilename] =useState('') ;
     const [file, setFile] = useState(null);
@@ -34,6 +34,10 @@ export default function Home({ login }) {
         try {
             const resultData = await fetch('http://192.168.56.1:8000/api/v1/service/transcribe', {
                 method: "POST",
+                headers:{
+                    Authorization:`Bearer ${auth}`,
+                
+                },
                 body: formData,
             });
 
@@ -61,6 +65,41 @@ export default function Home({ login }) {
         valueRef.current.value=null;
         setFilename('');
     }
+    async function handleSave(){
+        if(!result)
+            {
+                warningToast("transcript is empty cant save");
+                return;
+            }
+            const date=new Date();
+            const data={
+                result,
+                filename:file.name,
+                date:date.toISOString().slice(0, 10),
+                time:`${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`,
+                size:(file.size/(1024*1024)).toFixed(2)
+            }
+            const response = await fetch('http://192.168.56.1:8000/api/v1/service/save', {
+                method: 'POST', // HTTP method (other methods like PUT, DELETE, etc. can be used)
+                headers: {
+                    'Content-Type': 'application/json', // Specify the content type of the request body
+                    // You can include other headers as needed
+                    Authorization:`Bearer ${auth}`
+                },
+                body: JSON.stringify(data) // Data to be sent as the request body (should be a JSON string)
+    
+            });
+            if(response.ok)
+            {
+                const message=await response.json();
+                console.log(message)
+                successToast(message.message);
+                handleClose()
+                return;
+            }
+            warningToast(response.message)
+            return;
+    }
     return <>
         <main>
 
@@ -83,7 +122,7 @@ export default function Home({ login }) {
                         <div>
                             <textarea minRows={10} size="lg" className={styles.textarea} value={result.toString()} onChange={handleChange} />
                             <div>
-                                <Button>save</Button>
+                                <Button type="button" onClick={handleSave}>save</Button>
                                 <Button style={{'color':'red'}} onClick={handleClose}>close</Button>
                             </div>
                         </div> : ""}
